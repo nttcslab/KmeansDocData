@@ -2,8 +2,6 @@
 This is a code set for appying our K-means clustering algorithm, AF-ICP, 
 to **Large-scale and High-dimensional sparse data sets** like documents.
 The codes are implemented with C.
-<!--- ![Data structure](git_region.png) --->
-<img src="./Images/git_region.png" width="64%">
 
 ## Requirements for executing codes
 1. OS: CentOS 7 and later
