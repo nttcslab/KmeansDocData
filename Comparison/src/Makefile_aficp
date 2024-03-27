@@ -1,0 +1,7 @@
+CC = gcc
+CFLAGS = -fopenmp -lgomp -lm -O3 -Wall
+PROGRAM = ../bin/aficp
+SRC = aficp.c
+
+$(PROGRAM): $(SRC)
+	$(CC) $(SRC) $(CFLAGS) -o $(PROGRAM)
