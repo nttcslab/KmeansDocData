@@ -10,9 +10,11 @@ The codes are implemented with C.
 4. perf: 3.10
 
 ## Quick start: AF-ICP in five iterations
-1. Execute ``make -f Makefile_itr5_aficp`` in ``./src``.<br>
+1. Prepare the 8.2M-sized PubMed data set with a procedure in [dataset](./dataset).<br>
+This procedure creates ``./dataset/8.2M_pubmed.db``.
+2. Execute ``make -f Makefile_itr5_aficp`` in ``./src``.<br>
  This makes ``./bin/itr5_aficp`` object in your system.
-2. Execute the perl script ``./itr5_exeAFICP_8.2Mpubmed_perf.pl`` in ``./exe``.<br>
+3. Execute the perl script ``./itr5_exeAFICP_8.2Mpubmed_perf.pl`` in ``./exe``.<br>
  The 8.2M-sized PubMed data set is loaded from ``./dataset/8.2M_pubmed.db`` (3.8GB)
  in around two minutes
  and given K=10,000, AF-ICP is executed with 50-thread parallel processing.<br>
