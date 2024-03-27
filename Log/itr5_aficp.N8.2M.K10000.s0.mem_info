@@ -1,0 +1,47 @@
+Name:	itr5_aficp
+Umask:	0022
+State:	R (running)
+Tgid:	174621
+Ngid:	174621
+Pid:	174621
+PPid:	174620
+TracerPid:	0
+Uid:	21632	21632	21632	21632
+Gid:	100	100	100	100
+FDSize:	64
+Groups:	100 800 
+VmPeak:	15298740 kB
+VmSize:	 9367012 kB
+VmLck:	       0 kB
+VmPin:	       0 kB
+VmHWM:	14886876 kB
+VmRSS:	 8955144 kB
+RssAnon:	 8954184 kB
+RssFile:	     960 kB
+RssShmem:	       0 kB
+VmData:	 9355384 kB
+VmStk:	     132 kB
+VmExe:	      48 kB
+VmLib:	    3204 kB
+VmPTE:	   17728 kB
+VmSwap:	       0 kB
+Threads:	50
+SigQ:	0/1030070
+SigPnd:	0000000000000000
+ShdPnd:	0000000000000000
+SigBlk:	0000000008000000
+SigIgn:	0000000000000000
+SigCgt:	0000000180000000
+CapInh:	0000000000000000
+CapPrm:	0000000000000000
+CapEff:	0000000000000000
+CapBnd:	0000001fffffffff
+CapAmb:	0000000000000000
+Seccomp:	0
+Speculation_Store_Bypass:	thread vulnerable
+Cpus_allowed:	ffffffff,ffffffff,ffffffff,ffffffff,ffffffff,ffffffff
+Cpus_allowed_list:	0-191
+Mems_allowed:	00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000003
+Mems_allowed_list:	0-1
+voluntary_ctxt_switches:	246987
+nonvoluntary_ctxt_switches:	1371
