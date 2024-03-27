@@ -5,4 +5,4 @@ and the execution perl scripts [exe](./exe) for the 8.2M-sized PubMed data set.
 
 |#multiplications|Elapsed time|
 |---|---|
-|![git_comp_logmult_8.2MpubmedK80K.png](./Images/git_comp_logmult_8.2MpubmedK80K.png)|![git_comp_time_8.2MpubmedK80K.png](./Images/git_comp_time_8.2MpubbmedK80K.png)|
+|![logmult.png](./Images/logmult.png)|![time.png](./Images/time.png)|
