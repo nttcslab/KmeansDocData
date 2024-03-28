@@ -4,8 +4,8 @@ $ALGO = "ICP"; $algo = "icp";
 $HOMEDIR = "../../";
 $CompDIR = "$HOMEDIR/Comparison";
 $data_type = "pubmed";
-$data_size = "8.2M";
-$data_name = join("_",$data_size,$data_type);
+$data_size = "8_2M";
+$data_name = "$data_type.$data_size.db";
 $DATADIR = "$HOMEDIR/dataset";
 	if(! -d $DATADIR){printf("No DATADIR exists: %s\n",$DATADIR);}
 $BINDIR = "$CompDIR/bin";
@@ -19,7 +19,7 @@ $NumThreads = 50;
 $bin = "$BINDIR/$algo";
 	if(! -x $bin){printf("No bin file: %s\n",$bin);}
 
-$input = "$DATADIR/$data_name.db";
+$input = "$DATADIR/$data_name";
 	if(! -r $input){printf("No input exists.\n");exit(1);}
 
 $seed = 0;

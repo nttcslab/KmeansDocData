@@ -4,8 +4,8 @@ $ALGO = "AF-ICP"; $algo = "aficp";
 $HOMEDIR = "../../";
 $CompDIR = "$HOMEDIR/Comparison";
 $data_type = "pubmed";
-$data_size = "8.2M";
-$data_name = join("_",$data_size,$data_type);
+$data_size = "8_2M";
+$data_name = "$data_type.$data_size.db";
 $DATADIR = "$HOMEDIR/dataset";
 	if(! -d $DATADIR){printf("No DATADIR exists: %s\n",$DATADIR);}
 $BINDIR = "$CompDIR/bin";
@@ -24,7 +24,7 @@ $thterm = $ThTermMin; $thterm =~ s/000$/K/;
 $ThValMin = 0.020; $ThValMax = 0.044;
 $ThValStep1 = 0.002; $ThValStep2 = 0.001;
 
-$input = "$DATADIR/$data_name.db";
+$input = "$DATADIR/$data_name";
 	if(! -r $input){printf("No input exists.\n");exit(1);}
 
 $seed = 0;

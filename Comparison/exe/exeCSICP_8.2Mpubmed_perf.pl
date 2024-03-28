@@ -4,8 +4,8 @@ $ALGO = "CS-ICP"; $algo = "csicp";
 $HOMEDIR = "../../";
 $CompDIR = "$HOMEDIR/Comparison";
 $data_type = "pubmed";
-$data_size = "8.2M";
-$data_name = join("_",$data_size,$data_type);
+$data_size = "8_2M";
+$data_name = "$data_type.$data_size.db";
 $DATADIR = "$HOMEDIR/dataset";
 	if(! -d $DATADIR){printf("No DATADIR exists: %s\n",$DATADIR);}
 $BINDIR = "$CompDIR/bin";
@@ -21,7 +21,7 @@ $bin = "$BINDIR/$algo";
 
 $ThTerm_rate = 0.9;
 
-$input = "$DATADIR/$data_name.db";
+$input = "$DATADIR/$data_name";
 	if(! -r $input){printf("No input exists.\n");exit(1);}
 
 $seed = 0;
