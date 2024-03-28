@@ -5,7 +5,7 @@ $DATADIR = "./";
 $fname = "docword.pubmed.txt";
 $inf = "$DATADIR/$fname";
 	if(! -r $inf){printf("No input:%s\n",$inf);exit(1);}
-$outf = "$DATADIR/8.2M_pubmed.db";
+$outf = "$DATADIR/pubmed.8_2M.db";
 
 undef(%TF); undef(%NUM);
 open(IN,$inf);
