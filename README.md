@@ -26,7 +26,9 @@ and move it to ``./dataset`` directory.
 3. Execute the perl script ``./itr5_exeAFICP_8.2Mpubmed_perf.pl`` in ``./exe``.<br>
  The 8.2M-sized PubMed data set is loaded from ``./dataset/pubmed.8_2M.db`` (3.8GB)
  in around two minutes
- and given K=10,000, AF-ICP is executed with 50-thread parallel processing.<br>
+ and given K=10,000, AF-ICP is executed with 50-thread parallel processing (default).<br>
+You can change default values in the perl scripts.
+For instance, the number of threads is defined by ``$NumThreads`` in the script.<br>
  A log file is generated in ``./Log``.<br>
 
 ## Compare AF-ICP with other algorithms, ICP, TA-ICP, and CS-ICP
