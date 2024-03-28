@@ -3,7 +3,7 @@ This repository contains supplemental materials including an [additional documen
 and a code set for appying **our K-means clustering algorithm**, **AF-ICP**, 
 to **Large-scale and High-dimensional sparse data sets** such as 
 the 8.2M-sized PubMed data set and comparing it with the other algorithms, 
-ICP, TA-ICP, and CS-ICP.
+ICP, TA-ICP, and CS-ICP in ``./Comparision``.
 The codes are implemented with C.
 
 ## Requirements for executing codes
