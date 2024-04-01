@@ -760,7 +760,7 @@ int	calMeans_sparse(int i, double all_distcalc)
 		for(t = vOrderTh[j]; t < vNT[j]; ++t){// middle loop
 			tid = mTID[j][t]; ptid = tid -ThTerm;
 			for(h = 0; h < candidates; h++){// innermost loop
-				k = mExactCal[th_id][h]; mAppear[th_id][k] = 1;
+				k = mExactCal[th_id][h]; mAppear[th_id][h] = 1;
 				v = mMeanVal[ptid][k];
 				if(v >= thv) continue;
 
