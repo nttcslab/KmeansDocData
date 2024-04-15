@@ -1,4 +1,4 @@
-// AF-ICP: Proposed algorithm
+// AF-ICP: proposed algorithm 
 //-----------------------------------------------------------//
 #include	<stdio.h>
 #include	<stdlib.h>
@@ -340,7 +340,7 @@ void	initData(int seedN, int seedK)
 		id = vID[order]; vPnt[i] = id;
 		if(order != j-1){vID[order] = vID[j-1];}
 		j--;
-	}//K-loop
+	}
 
 	vNM = (int *) calloc(NumUTD,sizeof(int));
 	for(i = 0; i != K; ++i){
@@ -409,7 +409,6 @@ double estThValLB(double thval_step)
 {//Required: **mMean, *vNM, NumUTD, *vAssSim, *vObjL1norm
 	int	j, h;
 	int	th_id, tid, bin;
-//	double	bin_width = 1e-4;
 	double	bin_width = thval_step;
 	double	scale = 1.0/bin_width;
 	int num_bins;
@@ -440,7 +439,7 @@ double estThValLB(double thval_step)
 			bin = (int) floor(scale*mMean[tid][h]);
 			mMult12[th_id][bin] += (unsigned long) df;
 		}
-	}//t-loop
+	}
 }//omp
 	for(j = 0; j < num_bins; j++)
 		for(h = 0; h < NumThreads; ++h) vMult12[j] += mMult12[h][j];
@@ -469,7 +468,6 @@ double estThValLB(double thval_step)
 
 	return min_thv = (double) min_bin*bin_width;
 }
-
 
 	//-- Approximate #multiplications: Differentital --//
 int	findUpperThVal(int i, int j, double v, double* thval)
@@ -725,6 +723,7 @@ int	calMeans_sparse_1st(int i, double all_distcalc)
 			vChObj[j].out = init_cid; vChObj[j].in = final_cid;
 		}
 		obj_funct += ass_sim;
+
 	}//j-loop: Object
 }//omp
 
@@ -786,7 +785,6 @@ int	calMeans_sparse_1st(int i, double all_distcalc)
 	}
 }//omp
 
-	//-- to avoid a large memory consumption. --//
 	//-- NumUTD * (K || NumThreads) is forbidden. --//
 	ctrM = 0;
 	for(k = 0; k < K; k++) vMvMID[k] = -1;
@@ -1085,7 +1083,7 @@ int	calMeans_sparse_2nd(int i, double all_distcalc)
 			for(h = 0; h < num_means; h++){
 				k = mExactCal[th_id][h];
 				mSim[th_id][h] += mX[j][t]*mMeanVal[ptid][k];
-				mAppear[th_id][k] = 1;
+				mAppear[th_id][h] = 1;
 				num_mult++;
 			}
 		}	
@@ -1169,7 +1167,6 @@ int	calMeans_sparse_2nd(int i, double all_distcalc)
 }//omp
 
 	//-- The following loop was NOT parallelized --//
-	//-- to avoid a large memory consumption. --//
 	//-- NumUTD * (K || NumThreads) is forbidden. --//
 	ctrM = 0;
 	for(k = 0; k < K; k++) vMvMID[k] = -1;
@@ -1316,7 +1313,6 @@ int	calMeans_sparse_2nd(int i, double all_distcalc)
 	for(tid = ThTerm; tid < NumUTD; tid++){
 		ptid = tid -ThTerm;
 		for(h = 0; h < vNM[tid]; ++h)
-			//if(mMean[tid][h] < ThVal) break;
 			if(mMean[tid][h] < 1.0) break;
 		vNMlarge[ptid] = h;
 
@@ -1328,7 +1324,6 @@ int	calMeans_sparse_2nd(int i, double all_distcalc)
 
 #pragma omp parallel num_threads(NumThreads) private(j,h,k,v,tid,ptid,ctrI,num_means)
 {
-//	num_means = 0;
 	#pragma omp for
 	for(tid = ThTerm; tid < NumUTD; tid++){
 		ptid = tid -ThTerm;
@@ -1351,7 +1346,6 @@ int	calMeans_sparse_2nd(int i, double all_distcalc)
 		vNMmove[tid] = ctrI +1; //Number of moving centroids
 	}
 
-//	num_means = 0;
 	#pragma omp for
 	for(tid = 0; tid < ThTerm; tid++){
 		num_means = vNM[tid];
@@ -1403,6 +1397,7 @@ int	calMeans_sparse(int i, double all_distcalc)
 	double	ass_sim;//Similarity from an object to its assigned centroid
 	int	out_cid, in_cid;//Centroid ID of out-going and in-coming
 	int	th_id;//Thread ID
+	//double	invThVal;//Inverse of ThVal to avoid devisions
 	int	ctr_low;//Tentative counters for high and low w.r.t. ThVal
 	int	ctrM, ctrI;//Tentative counters for Moving and Invariant means
 	double	dfmf, rate0, rate1, rate2;
@@ -1451,7 +1446,7 @@ int	calMeans_sparse(int i, double all_distcalc)
 			num_means = 0;
 			for(h = 0; h < NumMvMeans; h++){//Pruning using L1norm in subspace
 				k = vMvMID[h];
-				v = mSim[th_id][k] +mObjPL1norm[th_id][k]; // num_mult++;
+				v = mSim[th_id][k] +mObjPL1norm[th_id][k];
 				if(vAssSim[j] > v) continue;
 	
 				mSim[th_id][num_means] = mSim[th_id][k];
@@ -1462,7 +1457,7 @@ int	calMeans_sparse(int i, double all_distcalc)
 				for(h = 0; h < num_means; h++){
 					k = mExactCal[th_id][h];
 					mSim[th_id][h] += mX[j][t]*mMeanVal[ptid][k];
-					mAppear[th_id][k] = 1;
+					mAppear[th_id][h] = 1;
 					num_mult++;
 				}
 			}
@@ -1496,7 +1491,7 @@ int	calMeans_sparse(int i, double all_distcalc)
 			// Smaller than ThVal
 			num_means = 0;
 			for(k = 0; k < K; k++){//Pruning using L1norm in subspace
-				v = mSim[th_id][k] +mObjPL1norm[th_id][k]; // num_mult++;
+				v = mSim[th_id][k] +mObjPL1norm[th_id][k];
 				if(vAssSim[j] > v) continue;
 	
 				mSim[th_id][num_means] = mSim[th_id][k];
@@ -1507,7 +1502,7 @@ int	calMeans_sparse(int i, double all_distcalc)
 				for(h = 0; h < num_means; h++){
 					k = mExactCal[th_id][h];
 					mSim[th_id][h] += mX[j][t]*mMeanVal[ptid][k];
-					mAppear[th_id][k] = 1;
+					mAppear[th_id][h] = 1;
 					num_mult++;
 				}
 			}	
@@ -1527,7 +1522,7 @@ int	calMeans_sparse(int i, double all_distcalc)
 			vAssID[j] = final_cid;
 			vChObj[j].out = init_cid; vChObj[j].in = final_cid;
 		}
-		obj_funct += ass_sim;//Sum of sim. to the confirmed assigned centroid 
+		obj_funct += ass_sim;
 
 	}//j-loop: Object
 }//omp
@@ -1591,7 +1586,6 @@ int	calMeans_sparse(int i, double all_distcalc)
 }//omp
 
 	//-- The following loop was NOT parallelized --//
-	//-- to avoid a large memory consumption. --//
 	//-- NumUTD * (K || NumThreads) is forbidden. --//
 	ctrM = 0;
 	for(k = 0; k < K; k++) vMvMID[k] = -1;
@@ -1739,6 +1733,7 @@ int	calMeans_sparse(int i, double all_distcalc)
 		num_means = vNM[tid];
 		ctrI = num_means-1;
 		for(h = 0; h < num_means; ++h){
+			//if(h >= ctrI) break;
 			if(h > ctrI) break;
 			k = mMID[tid][h]; v = mMean[tid][h];
 			if(vNew[k] == 0){
